@@ -24,3 +24,40 @@ We used a direct wiki-labeling technique to label the leaves of our developed tr
 * Most central node in graph of wikipedia links
 * Highest pagerank among wikipedia category pages above the topic pages
 * Highest pagerank among pages linked to by topic pages
+
+Visualization
+------------
+This project includes several models for visualization opaque topics as well as compare corpera. 
+
+Our first visualization shows the derived hierarchical topic models in dendrogram form. Here, each of the topics are clustered by their relationship with one and other. Colors depict groupings of related topics. We also include the terms and their weightings for each of the topics to enable readers to understand these groupings. 
+
+Our second visualization explores differences between corpera based on topic distance measures. These methods show which area each corpus is focused and areas in which it is not. 
+
+Finally, our third visualization uses a graph to show connected (related) entities.  Here we placed each document as a node in a graph where the edge represents a relationship based on shared metadata (e.g., similar topic weights). 
+
+
+Code
+----
+
+This project contains several modules for downloading publications, deriving the ontology, associating labels with topics, and visualizing results. 
+
+The first collection of scripts downloads articles from various journals. 
+
+* JPAM-pull: Scripts for downloading articles from JPAM. volume_iterator.py retrieves a collection of DOIs from specified JPAM volumes. percentage_pull.py then downloads full text articles and metadata for those publications. 
+* JPART-pull: Scripts for downloading articles from JPART. pull.py downloads papers from the JPART website. 
+* PAR-pull: Scripts for downloading articles from PAR. pull.py downlaods papers from the PAR website. 
+
+The second collection of scripts create the ontology using herirachical LDA and heirarchical clustering of LDA topics
+
+* tree.py: a script to create a hierarchical LDA topic model for a given corpus. 
+
+The third collection of scripts associates lables with topics identified by the topic model
+
+* wiki.py: a script to associate labels with topics. It uses various methods for identifying labels and different distance measures to associate labels with a given topic. 
+
+The fourth collection of scripts visualizes and compares the various datasets. 
+
+* compare_corpera.ipynb: a notebook that compares articles from the three journals. Specifically it calculates k-nearest neighbors from journal vectors and unique fingerprints for each journal.
+* Dendrogram.ipynb: a notebook that creates dendogram visualizations of the derived ontologies as well as graphs that show the connections between topics.  
+
+
