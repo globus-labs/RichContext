@@ -1,8 +1,15 @@
 ﻿Dataset Extraction
 ===================
 
+Locating external references to datasets (and other entities) in publications is challenging as no relevant ontology is available and standard named entity recognition approaches do not apply. 
 
-This is the Named Entity Recognition (NER) model of automatic dataset extraction from scientific publications.
+This project includes a dataset-specific Named Entity Recognition (NER) model  for exracting datasets from publications. We first split the paper into sections and apply the same natural language processing (NLP) models on each section to derive references. Specifically the sections extracted are abstracts, data sections, and figure and table captions.  
+
+In each case we applied a model that aims to identify words that we view as "dataset indicative" (e.g. “survey”, “study”, “dataset”): that is, words that we find are often used within several words of the name of a dataset. We use several differnet methods to generate this list of words: manually defined, TF-IDF, and TextRank. 
+
+We apply a named entity recognition approach and filter the named entities by the set of dataset indicative words. 
+
+We evaluate our model on manually established linkages from the ICPSR repository. Our current model is able to extract dataset citations with precision of 89.13% and recall of 90.11%. Of our 50 papers, we correctly obtained the dataset in 82% of cases. We completely missed the dataset in 8% and incorrectly extracted a dataset in 10% of cases.  
 
 ----------
 **ICPSR_dataset_crawler.py:** a utility class to get metadata of the studies indexed by ICPSR
