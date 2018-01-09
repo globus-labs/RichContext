@@ -47,13 +47,16 @@ The first collection of scripts downloads articles from various journals.
 * JPART-pull: Scripts for downloading articles from JPART. pull.py downloads papers from the JPART website. 
 * PAR-pull: Scripts for downloading articles from PAR. pull.py downlaods papers from the PAR website.
 
-The second collection of scripts associates lables with topics identified by the topic model
+The second collection of scripts creates the hierarchical topic model.
+
+* Dendrogram.ipynb: a notebook that uses hierarchical clustering to derive the ontology. Note: the hierarchical LDA model is not included here as the standard code created by Blei et al. was used. 
+
+
+The third collection of scripts associates lables with topics identified by the topic model
 
 * wiki.py: a script to associate labels with topics. It uses various methods for identifying labels and different distance measures to associate labels with a given topic. 
 
-The third collection of scripts visualizes and compares the various datasets.
+The fourth collection of scripts visualizes and compares the various datasets.
 
 * compare_corpora.ipynb: a notebook that compares articles from the three journals. Specifically it calculates k-nearest neighbors from journal vectors and unique fingerprints for each journal.
 * Dendrogram.ipynb: a notebook that creates dendogram of topics and its visualizations.  Applies wiki.py to that dendrogram to infer the full hierarchical derived ontology as well as graphs that show the connections between topics.
-
-
