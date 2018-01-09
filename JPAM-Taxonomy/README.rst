@@ -9,7 +9,7 @@ Hierarchical LDA
 The Hierarchical LDA model is a form of unsupervised learning that aims to discover latent topics present in a corpus of papers, as well the relationships between the latent topics. Preprocessing of data consisted of mapping each document into a bag of words format, which essentially ignores order of words in the learning process, and pruning stop words, or words which have little importance to the meaning of an article, such as the words "the" and "of". Overall, this approach was not well suited for our purposes. First, it is computationally intensive and therefore slow.  Secondly,  our corpus size was too small to develop sufficiently coherent topics.  
 
 Clustering Topic models
-----------------------
+-----------------------
 The second approach uses a standard LDA model and hierarchical clustering to build the ontology. Here we preprocess the data in an identical manner to the above approach. Following the construction of the base vanilla LDA model, we build a tree on the topics using hierarchical clustering. Before clustering, we filtered out topics we viewed as noise by hand, such as "doi journal public policy", that could be considered "catch all" topics. We would expect almost every article in all of the journals to fall into these topics, so we gain no benefit by keeping them in the model. For the clustering, we used a measure of closeness that considered the pairwise distance between two given topics in the LDA model, where each topic is a probability distribution over all of the words found in our corpus, minus the words we exclude through stopword pruning.  This approach generates a tree of height log(n), where n is the number of topics generated.
 
 Labelling 
@@ -26,7 +26,7 @@ We used a direct wiki-labeling technique to label the leaves of our developed tr
 * Highest pagerank among pages linked to by topic pages
 
 Visualization
-------------
+-------------
 This project includes several models for visualization opaque topics as well as compare corpera. 
 
 Our first visualization shows the derived hierarchical topic models in dendrogram form. Here, each of the topics are clustered by their relationship with one and other. Colors depict groupings of related topics. We also include the terms and their weightings for each of the topics to enable readers to understand these groupings. 
@@ -45,19 +45,15 @@ The first collection of scripts downloads articles from various journals.
 
 * JPAM-pull: Scripts for downloading articles from JPAM. volume_iterator.py retrieves a collection of DOIs from specified JPAM volumes. percentage_pull.py then downloads full text articles and metadata for those publications. 
 * JPART-pull: Scripts for downloading articles from JPART. pull.py downloads papers from the JPART website. 
-* PAR-pull: Scripts for downloading articles from PAR. pull.py downlaods papers from the PAR website. 
+* PAR-pull: Scripts for downloading articles from PAR. pull.py downlaods papers from the PAR website.
 
-The second collection of scripts create the ontology using herirachical LDA and heirarchical clustering of LDA topics
-
-* tree.py: a script to create a hierarchical LDA topic model for a given corpus. 
-
-The third collection of scripts associates lables with topics identified by the topic model
+The second collection of scripts associates lables with topics identified by the topic model
 
 * wiki.py: a script to associate labels with topics. It uses various methods for identifying labels and different distance measures to associate labels with a given topic. 
 
-The fourth collection of scripts visualizes and compares the various datasets. 
+The third collection of scripts visualizes and compares the various datasets.
 
-* compare_corpera.ipynb: a notebook that compares articles from the three journals. Specifically it calculates k-nearest neighbors from journal vectors and unique fingerprints for each journal.
-* Dendrogram.ipynb: a notebook that creates dendogram visualizations of the derived ontologies as well as graphs that show the connections between topics.  
+* compare_corpora.ipynb: a notebook that compares articles from the three journals. Specifically it calculates k-nearest neighbors from journal vectors and unique fingerprints for each journal.
+* Dendrogram.ipynb: a notebook that creates dendogram of topics and its visualizations.  Applies wiki.py to that dendrogram to infer the full hierarchical derived ontology as well as graphs that show the connections between topics.
 
 
